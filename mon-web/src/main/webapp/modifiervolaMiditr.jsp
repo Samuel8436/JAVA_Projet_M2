@@ -1,42 +1,6 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@page import="java.sql.*" %>
-<%
-    if(request.getParameter("submit")!=null)
-    {
-        String id=request.getParameter("id");
-        String daty=request.getParameter("date");
-        String nom=request.getParameter("nom");
-        String prenom=request.getParameter("prenom");
-        String montant=request.getParameter("montant");
-        String antony=request.getParameter("antony");
-        
-        Connection con;
-        PreparedStatement pst;
-        ResultSet rs;
-        Class.forName("com.mysql.jdbc.Driver");
-        con=DriverManager.getConnection("jdbc:mysql://localhost/gestiondecaisse","root","");
-        
-        pst=con.prepareStatement("UPDATE volamiditra SET anarana = ?, fanampiny = ?, daty = ?, maribola = ?, antony = ? WHERE id=?");
-        pst.setString(1, nom);
-        pst.setString(2, prenom);
-        pst.setString(3, daty);
-        pst.setString(4,montant);
-        pst.setString(5,antony);
-        
-        pst.setString(6, id);   
-        pst.executeUpdate();
 
- %>
-    <script>
-        alert("Mise à jour succès");
-        location.href = "formVolaMiditra.jsp";
-    </script>
-    <script src="Alert/src/sweetalert2.js"></script>
-    <script src="Alert/src/SweetAlert.js"></script>
-    
-<%
-    }
-%>
 <!DOCTYPE html>
 <html>
     <head>
@@ -53,18 +17,31 @@
     <body>
         <%@include file="navBar.jsp" %>
         <%@include file="Securite_page.jsp" %>
+        <%@include file="RequetteTatitra.jsp" %>
+        <center>
+            <%
+                        String error = (String) request.getAttribute("errorMessage");
+                        String success = (String) request.getAttribute("successMessage");
+                    %>
+                    <% if (error != null) { %>
+                        <div class="alert alert-danger alert-dismissible fade show m-3" role="alert">
+                            <%= error %>
+                            <!-- <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"><img src="image/fermer.png" alt="" width="10px" height="10px"></button> -->
+                        </div>
+                    <% } else if (success != null) { %>
+                        <div class="alert alert-success alert-dismissible fade show m-3" role="alert">
+                            <%= success %>
+                            <!-- <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button> -->
+                        </div>
+                    <% } %>
+        </center>
         <div class="body">
             <h1><u><center>Modifier</center></u></h1>
             <div class="row">
                 <div class="col-sm-4">
-                    <form method="Post" action="#">
+                    
+                    <form method="Post" action="ModifierVolaM">
                         <%
-                            Connection con;
-                            PreparedStatement pst;
-                            ResultSet rs;
-                            Class.forName("com.mysql.jdbc.Driver");
-                            con=DriverManager.getConnection("jdbc:mysql://localhost/gestiondecaisse","root",""); 
-
                             String id=request.getParameter("id");
                             pst=con.prepareStatement("SELECT * FROM volamiditra WHERE id=?");
                             pst.setString(1, id);

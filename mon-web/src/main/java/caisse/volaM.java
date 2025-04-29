@@ -1,5 +1,6 @@
 package caisse;
 
+import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.*;
 import jakarta.servlet.http.*;
@@ -8,12 +9,14 @@ import java.sql.*;
 import java.util.logging.*;
 
 @WebServlet(name = "volaM", urlPatterns = {"/volaM"})
-public class volaM extends HttpServlet {
+public class volaM extends HttpServlet 
+{
 
     private static final Logger logger = Logger.getLogger(volaM.class.getName());
 
     // Méthode doPost
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException 
+    {
         // HttpSession session = request.getSession();
         
         // Récupération des données envoyées par le formulaire
@@ -45,10 +48,15 @@ public class volaM extends HttpServlet {
             int result = pst.executeUpdate();
             if (result > 0) {
                 // Redirection vers le formulaire après insertion
-                response.sendRedirect("formVolaMiditra.jsp");
+                request.setAttribute("successMessage", "Ajout Succes !");
+                RequestDispatcher rd = request.getRequestDispatcher("formVolaMiditra.jsp");
+                rd.forward(request, response);
             } else {
-                response.getWriter().println("Erreur lors de l'insertion.");
-            }
+                // response.getWriter().println("Erreur lors de l'insertion.");
+                request.setAttribute("errorMessage", "Erreur d'ajout");
+                RequestDispatcher rd = request.getRequestDispatcher("formVolaMiditra.jsp");
+                rd.forward(request, response);
+                }
 
         } catch (ClassNotFoundException e) {
             logger.log(Level.SEVERE, "Driver MySQL non trouvé", e);

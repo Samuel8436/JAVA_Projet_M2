@@ -13,12 +13,11 @@
         <title>JSP Page</title>
     </head>
     <body>
-      <%@include file="navBar.jsp" %>
-      <%@include file="RequetteTatitra.jsp" %>
+      
         <table>
             <tr>
                 <td>
-                  vola niditra :   
+                  Revenu General:   
                 </td>
                 <%
                     rs1=st.executeQuery(query);
@@ -36,7 +35,7 @@
                                 
             </tr>
             <tr>
-                <td>Mivoaka : </td>
+                <td>Dépense General: </td>
                 <%
                    rs2=st.executeQuery(mivoaka);
                     while (rs2.next()) 

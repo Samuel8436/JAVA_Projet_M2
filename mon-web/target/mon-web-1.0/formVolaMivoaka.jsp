@@ -12,44 +12,34 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Dépense</title>
-        <link href="bootstrap/._bootstrap.css" rel="stylesheet" type="text/css"/>
-        <link href="bootstrap/bootstrap.min.css" rel="stylesheet" type="text/css"/>
-        <script src="bootstrap/jquery-3.6.0.min.js" type="text/javascript"></script>
-        <script src="bootstrap/dataTable.bootstrap.min.js" type="text/javascript"></script>
         <link href="StylText.css" rel="stylesheet" type="text/css"/>
         <script src="TransformMajuscul.js" type="text/javascript"></script>
         <link href="StylText.css" rel="stylesheet" type="text/css"/>
+        <link rel="stylesheet" href="style.css">
         <style>
-            #overflowTest {
-              color: white;
-              padding: 15px;
-              width: 50%;
-              height: 500px;
-              overflow: scroll;
-              border: 1px solid #ccc;
-            }
-            @media print{
-                body *{
-                    visibility: hidden;
-                }
-                .print-container, .print-container *{
-                    visibility: visible;
-                }
-                .print-container{
-                    position: absolute;
-                    left: 0;
-                    top: 0;
-                }
-            }
-            input.Recherche{
-                float: right;
-                padding-top: 10px;
-            }
+            
         </style>
     </head>
     <body>
         <%@include file="navBar.jsp" %>
         <%@include file="Securite_page.jsp" %>
+        <center>
+            <%
+                String error = (String) request.getAttribute("errorMessage");
+                String success = (String) request.getAttribute("successMessage");
+            %>
+            <% if (error != null) { %>
+                <div class="alert alert-danger alert-dismissible fade show m-3" role="alert">
+                    <%= error %>
+                    <!-- <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"><img src="image/fermer.png" alt="" width="10px" height="10px"></button> -->
+                </div>
+            <% } else if (success != null) { %>
+                <div class="alert alert-success alert-dismissible fade show m-3" role="alert">
+                    <%= success %>
+                    <!-- <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button> -->
+                </div>
+            <% } %>
+        </center>
         <p><h2><b><center>DEPENSE</center></b></h2></p>
     <%@include file="RequetteTatitra.jsp" %>
     <%
@@ -73,11 +63,12 @@
     <div class="row">
         <div class="col-sm-4">
             <h2>Formulaire d'ajout</h2><br>
+            
             <form method="POST" action="volaMivoaka">
                 <p>
                     <label class="form-lael">DATE : </label><input type="Date" name="date" id="" class="form-control" required>
                     <label class="form-lael">Nom : </label><input type="text" name="nom" onkeyup="controlnom(this)" id='nom' placeholder="Nom" class="form-control" required>
-                    <label class="form-lael">Prénom : </label><input type="text" name="prenom"  placeholder="Prénom" class="form-control" required>
+                    <label class="form-lael">Prénom : </label><input type="text" name="prenom" id="prenom"  placeholder="Prénom" class="form-control" required>
                     <label class="form-lael">Montant : </label><input type="number" name="montant" placeholder="Montant" class="form-control" required>
                     <label class="form-lael">Motif : </label><input type="text" name="antony" placeholder="Motif" class="form-control" required>
                 </p>    
@@ -110,23 +101,18 @@
                                 <th>Motifs</th>
                             </tr>
                         </thead> 
-                            <%
                             
-                                /*Connection con;
-                                PreparedStatement pst;
-                                ResultSet rs;
-                                Class.forName("com.mysql.jdbc.Driver");
-                                con=DriverManager.getConnection("jdbc:mysql://localhost/gestiondecaisse","root","");
-                                */
-                                String volamivoaka="SELECT * FROM volamivoaka";
-                                st=con.createStatement();
-                                rs=st.executeQuery(volamivoaka);
-                                while (rs.next()) 
-                                {
-                                        String id = rs.getString("id");
-                            
-                            %>
                             <tbody id="myTable">
+                                <%
+                                    
+                                    try{
+                                        String volamivoaka="SELECT * FROM volamivoaka";
+                                        st=con.createStatement();
+                                        rs=st.executeQuery(volamivoaka);
+                                        while (rs.next()) 
+                                        {
+                                            String id = rs.getString("id");
+                                %>
                                 <tr>
                                     <td><%=rs.getString("id") %></td>
                                     <td><%=rs.getString("anarana") %> <%=rs.getString("fanampinanarana") %></td>
@@ -142,10 +128,15 @@
                                         <a href="RecuVolaMivoka.jsp?id=<%=id %>"><button title='Impression de reçu' class="btn btn-secondary"> Reçu</button></a>
                                     </td>
                                 </tr>
-                            </tbody>
-                            <%
+                                <%
+                                    }
+                                    con.close();
+                                } catch (Exception e) {
+                                    out.println("Erreur : " + e.getMessage());
                                 }
-                            %>
+                                %>
+                            </tbody>
+                            
                         
                     </table>
                     </div>
@@ -156,10 +147,45 @@
     </div>
     <script>
         
-        function imprimer_page(){
-            window.print(document.getElementById='impri');
-        }
+        // function imprimer_page(){
+        //     window.print(document.getElementById='impri');
+        // }
+        const input = document.getElementById("prenom");
+    
+        input.addEventListener("input", () => {
+          const mots = input.value.split(' ').map(mot => {
+            return mot ? mot[0].toUpperCase() + mot.slice(1).toLowerCase() : '';
+          });
+          input.value = mots.join(' ');
+        });
 
+        // Mise en page de tableau
+        $(document).ready(function () {
+            $('#tbl-stdent').DataTable({
+                searching: false,      // ✅ Barre de recherche activée
+                paging: true,
+                lengthChange: true,
+                ordering: true,
+                autoWidth: false,
+                language: {
+                    search: "Recherche :",
+                    lengthMenu: "Afficher _MENU_ enregistrements",
+                    zeroRecords: "Aucun résultat trouvé",
+                    info: "Page _PAGE_ sur _PAGES_",
+                    infoEmpty: "Aucun enregistrement",
+                    infoFiltered: "(filtré sur _MAX_ enregistrements)",
+                    paginate: {
+                        first: "«",
+                        last: "»",
+                        next: "›",
+                        previous: "‹"
+                    },
+                },
+                columnDefs: [
+                    { orderable: false, targets: [5, 6] } // Désactiver tri sur "Actions" et "Reçu"
+                ]
+            });
+        });
     </script>
     </body>
 </html>

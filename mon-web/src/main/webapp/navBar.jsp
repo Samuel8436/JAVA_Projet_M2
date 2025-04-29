@@ -3,7 +3,7 @@
     Created on : 21 janv. 2023, 22:47:28
     Author     : NOMENY
 --%>
-
+ 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -14,9 +14,13 @@
         <script src="bootstrap/jquery.min.js"></script>
         <script src="bootstrap/popper.min.js"></script>
         <script src="bootstrap/bootstrap.min.js"></script>
-        <style>
-            
-        </style>
+        
+        
+        <link rel="stylesheet" href="bootstrap/dataTables.bootstrap.min.css">
+        <script src="bootstrap/jquery-3.6.0.min.js" type="text/javascript"></script>
+        <script src="bootstrap/jquery.dataTables.min.js"></script>
+        <script src="bootstrap/dataTable.bootstrap.min.js" type="text/javascript"></script>
+        <script src="bootstrap/dataTables.bootstrap.min.js"></script>
     </head>
     <body>
         <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
@@ -50,16 +54,15 @@
                 </div>
       </li>
      
-      <li class="nav-item">
+      <!-- <li class="nav-item">
           <a class="nav-link" href="Courbesparans.jsp" title="Statistique">Statistique</a>
-        <!-- <a class="nav-link" href="#">Link</a> -->
-      </li>
+      </li> -->
       <li class="nav-item dropdown">
         <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
                     <img src="image/Add List_24px.png" title="Plus">
                 </a>
                   <div class="dropdown-menu">
-                      <a class="dropdown-item" href="SoldeMiditra&Mivok.jsp" title="Soldes">Soldes</a>
+                      <!-- <a class="dropdown-item" href="SoldeMiditra&Mivok.jsp" title="Soldes">Soldes</a> -->
                       <!-- <a class="dropdown-item" href="apropot de developeur.jsp" title="Rapports">Autre</a> -->
                       <a class="dropdown-item" href="https://samuel8436.github.io/CURRICULUM-VITAE/" title="Ingenieur">Information de développeur</a>
                       <a class="dropdown-item" href="Sedeconnecter.jsp" title="Déconnexion">Déconnexion</a>

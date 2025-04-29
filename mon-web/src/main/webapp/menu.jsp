@@ -18,7 +18,7 @@
                   filter: grayscale(100%);
                 }
               }
-            button{
+            a.button{
             float: right;
             border: 0px;
             }
@@ -28,7 +28,7 @@
     <body>
         <%@include file="navBar.jsp" %>
         <%@include file="Securite_page.jsp" %>
-        
+        <%@include file="RequetteTatitra.jsp" %>
         <br><br>
         <div class="container">
             <table width='100%'>
@@ -40,9 +40,7 @@
                 </tr>
             </table>
         </div><br>
-        
-            <%@include file="RequetteTatitra.jsp" %>
-            
+
         <div class="container">
   
             <div class="card-columns">
@@ -60,7 +58,7 @@
                         }
                     %>
                 </div>
-                <button><img src="image/suivant.jpg" alt=""></button>
+                <a class="button" href="formVolaMiditra.jsp"><img src="image/suivant.jpg" alt=""></a>
               </div>
 
               <div class="card bg-info">
@@ -76,7 +74,7 @@
                         }
                     %>
                 </div>
-                <button><img src="image/suivant.jpg" alt=""></button>
+                <a class="button" href="formVolaMivoaka.jsp"><img src="image/suivant.jpg" alt=""></a>
               </div>
 
               <div class="card bg-success">
@@ -107,8 +105,22 @@
                     %>
                   </p>
                 </div>
-                <button><img src="image/suivant.jpg" alt=""></button>
+                <a class="button" href="#"><img src="image/suivant.jpg" alt=""></a>
               </div>
+
+              <div class="card bg-secondary">
+                <div class="card-body text-center">
+                    <%@include file="SoldeMiditra&Mivok.jsp" %>
+                </div>
+              </div>
+
+              <div class="card">
+                <div class="card-body text-center">
+                    <p class="card-text"><b><h2>Courbe de representation par ans</h2></b></p>
+                    <%@include file="Courbesparans.jsp" %>
+                </div>
+              </div>
+              
             </div>
           </div>
     </body>

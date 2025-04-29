@@ -1,6 +1,7 @@
 
 package caisse;
 
+import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.*;
 import jakarta.servlet.http.*;
@@ -82,7 +83,11 @@ public class Autr_compte extends HttpServlet {
 
                     pst.executeUpdate();
                     // JOptionPane.showMessageDialog(null, "Création du compte succe");
-                    response.sendRedirect("Login.jsp");
+                    // response.sendRedirect("Login.jsp");
+                    request.setAttribute("successMessage", "Compte créé avec succès !");
+                    RequestDispatcher rd = request.getRequestDispatcher("Login.jsp");
+                    rd.forward(request, response);
+ 
 
                     pst.close();
                     con.close();
@@ -102,22 +107,11 @@ public class Autr_compte extends HttpServlet {
             } 
         }
         else{
-                // JOptionPane.showMessageDialog(null, "veuillez confirmer votre mot de passe");
-                response.sendRedirect("Autre_compte.jsp");
-                /*
-                    out.println("<script>");
-                    out.println("alert('Mot de pass non valide');");
-                    out.println("location='Autre_compte.jsp';");
-                    out.println("</script>");
-               
-                
-                out.println("<script>");
-                out.println("alert('Mot de pass non valide');");
-                out.println("location.href='Autre_compte.jsp';");
-                out.println("</script>");
-                out.println("<script src=\"Alert/src/sweetalert2.js\"></script>");
-                out.println("<script src=\"Alert/src/SweetAlert.js\"></script>");*/
-            }
+            
+            request.setAttribute("errorMessage", "Les mots de passe ne correspondent pas !");
+            RequestDispatcher rd = request.getRequestDispatcher("Autre_compte.jsp");
+            rd.forward(request, response);
+        }           
     }
 
     

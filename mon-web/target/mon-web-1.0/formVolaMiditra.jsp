@@ -12,51 +12,38 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Revenu</title>
-        <link href="bootstrap/bootstrap.min.css" rel="stylesheet" type="text/css"/>
-        <script src="bootstrap/jquery-3.6.0.min.js" type="text/javascript"></script>
-        <script src="bootstrap/dataTable.bootstrap.min.js" type="text/javascript"></script>
         <link href="StylText.css" rel="stylesheet" type="text/css"/>
         <script src="TransformMajuscul.js" type="text/javascript"></script>
         <link href="StylText.css" rel="stylesheet" type="text/css"/>
-        
-        <style>
-            #overflowTest 
-            {
-              color: white;
-              padding: 15px;
-              width: 50%;
-              height: 500px;
-              overflow: scroll;
-              border: 1px solid #ccc;
-            }
-            @media print
-            {
-                body *{
-                    visibility: hidden;
-                }
-                .print-container, .print-container *{
-                    visibility: visible;
-                }
-                .print-container{
-                    position: absolute;
-                    left: 0;
-                    top: 0;
-                }
-            }
-            input.Recherche{
-                padding-top: 10px;
-                float: right;
-            }
-        </style>
+        <link rel="stylesheet" href="style.css">
     </head>
     <body>
         <%@include file="navBar.jsp" %>
         <%@include file="Securite_page.jsp" %>
-            <p><b><center><h2>REVENU</h2></center></b></p>
+        <%@include file="RequetteTatitra.jsp" %>
+        <center>
+            <%
+                String error = (String) request.getAttribute("errorMessage");
+                String success = (String) request.getAttribute("successMessage");
+            %>
+            <% if (error != null) { %>
+                <div class="alert alert-danger alert-dismissible fade show m-3" role="alert">
+                    <%= error %>
+                    <!-- <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"><img src="image/fermer.png" alt="" width="10px" height="10px"></button> -->
+                </div>
+            <% } else if (success != null) { %>
+                <div class="alert alert-success alert-dismissible fade show m-3" role="alert">
+                    <%= success %>
+                    <!-- <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button> -->
+                </div>
+            <% } %>
+        </center>
+        <p><b><center><h2>REVENU</h2></center></b></p>
     
     <div class="row">
         <div class="col-sm-4">
             <h2>Formulaire d'ajout</h2><br>
+            
             <form method="POST" action="volaM">
                 <p>
                     <label class="form-lael">Date : </label><input type="Date" name="date" id="" class="form-control" required>
@@ -81,8 +68,7 @@
                 <!-- <input class="Recherche" id="myInput" type="text" placeholder="Recherche..">-->
                 <span class="list"><center><h2>Listes</h2></center></span>
             </div>
-            <div class="panel-body">
-                <div class='print-container'>
+            
                     <table id="tbl-stdent" class="table table-striped table-bordered" cellspading="0" width="100%">
                         <thead>
                             <tr>
@@ -92,44 +78,40 @@
                                 <th>Montant</th>
                                 <th>Montant</th>
                             </tr>
-                        </thead> 
+                        </thead>   
+                        <tbody id="myTable">
                             <%
-                            
-                                Connection con;
-                                PreparedStatement pst;
-                                ResultSet rs;
-                                Class.forName("com.mysql.jdbc.Driver");
-                                con=DriverManager.getConnection("jdbc:mysql://localhost/gestiondecaisse","root","");
-                                
-                                String query="SELECT * FROM volamiditra";
-                                Statement st=con.createStatement();
-                                rs=st.executeQuery(query);
-                                while (rs.next()) 
-                                {
-                                String id = rs.getString("id");
-                            
+                                try {
+                                    String Volamiditra = "SELECT * FROM `volamiditra` ORDER BY `id` DESC";
+                                    st = con.createStatement();
+                                    rs = st.executeQuery(Volamiditra);
+                                    while (rs.next()) {
+                                        String id = rs.getString("id");
                             %>
-                            <tbody id="myTable">
-                                <tr>
-                                    <td><%=rs.getString("id") %></td>
-                                    <td><%=rs.getString("anarana") %> <%=rs.getString("fanampiny") %></td>
-                                    <!--<td></td>-->
-                                    <td><%=rs.getString("daty") %></td>
-                                    <!--<td><%//=rs.getString("taona") %>/<%//=rs.getString("volana") %></td>-->
-                                    <td><%=rs.getString("maribola") %></td>
-                                    <td><%=rs.getString("antony") %></td>
-                                    <td>
-                                        <a href="modifiervolaMiditr.jsp?id=<%=id %>"><img src="image/icons8-Edit-32.png" title='Modifier'></a>   
-                                        <a href="SuprimerVolaMiditr?id=<%=rs.getString("id") %>"><img src="image/icons8-Trash-32.png" onclick="return confirm('Voulez-vous vraiment suprimer');" title='Suprimer'></a>
-                                    </td>
-                                    <td>
-                                        <a href="RecuVolaMiditra.jsp?id=<%=id %>"><button title='Impression de reçu' class="btn btn-secondary"> Reçu</button></a>
-                                    </td>
-                                </tr>
-                            </tbody>
+                            <tr>
+                                <td><%=rs.getString("id") %></td>
+                                <td><%=rs.getString("anarana") %> <%=rs.getString("fanampiny") %></td>
+                                <!--<td></td>-->
+                                <td><%=rs.getString("daty") %></td>
+                                <!--<td><%//=rs.getString("taona") %>/<%//=rs.getString("volana") %></td>-->
+                                <td><%=rs.getString("maribola") %></td>
+                                <td><%=rs.getString("antony") %></td>
+                                <td>
+                                    <a href="modifiervolaMiditr.jsp?id=<%=id %>"><img src="image/icons8-Edit-32.png" title='Modifier'></a>   
+                                    <a href="SuprimerVolaMiditr?id=<%=rs.getString("id") %>"><img src="image/icons8-Trash-32.png" onclick="return confirm('Voulez-vous vraiment suprimer');" title='Suprimer'></a>
+                                </td>
+                                <td>
+                                    <a href="RecuVolaMiditra.jsp?id=<%=id %>"><button title='Impression de reçu' class="btn btn-secondary"> Reçu</button></a>
+                                </td>
+                            </tr>
                             <%
+                                    }
+                                    con.close();
+                                } catch (Exception e) {
+                                    out.println("Erreur : " + e.getMessage());
                                 }
                             %>
+                        </tbody>
                     </table>
                 </div>
             </div>
@@ -145,6 +127,34 @@
             return mot ? mot[0].toUpperCase() + mot.slice(1).toLowerCase() : '';
           });
           input.value = mots.join(' ');
+        });
+
+        // Mise en page de tableau
+        $(document).ready(function () {
+            $('#tbl-stdent').DataTable({
+                searching: false,      // ✅ Barre de recherche activée
+                paging: true,
+                lengthChange: true,
+                ordering: true,
+                autoWidth: false,
+                language: {
+                    search: "Recherche :",
+                    lengthMenu: "Afficher _MENU_ enregistrements",
+                    zeroRecords: "Aucun résultat trouvé",
+                    info: "Page _PAGE_ sur _PAGES_",
+                    infoEmpty: "Aucun enregistrement",
+                    infoFiltered: "(filtré sur _MAX_ enregistrements)",
+                    paginate: {
+                        first: "«",
+                        last: "»",
+                        next: "›",
+                        previous: "‹"
+                    },
+                },
+                columnDefs: [
+                    { orderable: false, targets: [5, 6] } // Désactiver tri sur "Actions" et "Reçu"
+                ]
+            });
         });
       </script>
 </html>

@@ -1,7 +1,6 @@
-deposena @ git ny projet
-@ tableau ao @ recenu sy depense asiana mise en page
-eo @ authentification asiana message d'erreur refa diso ny mot de passe na ny nom d'utilisateurs
-Message d'erreur ao @ creation compte ao anatyn servlet no asiana anizany raha mety na atao any @ jsp
-hatsaraina ny vode regroupena @ fichier irey.java ny conneion sy ny action rehetra
+
+@ tableau ao @ revenu sy depense asiana mise en page
+	
+
+hatsaraina ny code regroupena @ fichier irey.java ny connexion sy ny action rehetra
 atao responsive aby ny styl css rehetra
-asiana boutton plus detailler neo@ cadre isakin'ny menu dia aseho eo ny transaction t@ semain farany

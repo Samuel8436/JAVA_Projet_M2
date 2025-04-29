@@ -37,6 +37,7 @@
     </head>
     <body>
         <%@include file="navBar.jsp" %>
+        <%@include file="Securite_page.jsp" %>
         <form method="POST" action="#">
             <%
                 Connection con;

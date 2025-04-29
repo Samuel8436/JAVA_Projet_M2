@@ -1,5 +1,6 @@
 package caisse;
 
+import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.*;
@@ -59,8 +60,18 @@ public class volaMivoaka extends HttpServlet {
                     pst.setDouble(5, dmontant);
 
                     pst.executeUpdate();
-                    response.sendRedirect("formVolaMivoaka.jsp");
+                    request.setAttribute("successMessage", "Ajout Succes !");
+                    RequestDispatcher rd = request.getRequestDispatcher("formVolaMivoaka.jsp");
+                    rd.forward(request, response);
+                        // response.sendRedirect("formVolaMivoaka.jsp");
                 }
+                catch (Exception e) {
+                    // TODO: handle exception
+                    request.setAttribute("errorMessage", "Erreur d'ajout");
+                    RequestDispatcher rd = request.getRequestDispatcher("formVolaMivoaka.jsp");
+                    rd.forward(request, response);
+                }
+
             }
 
         } catch (ClassNotFoundException | SQLException | NumberFormatException ex) {

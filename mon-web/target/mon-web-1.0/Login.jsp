@@ -13,6 +13,7 @@
         <title>Login</title>
         <link href="bootstrap/._bootstrap.css" rel="stylesheet" type="text/css"/>
         <link href="bootstrap/bootstrap.min.css" rel="stylesheet" type="text/css"/>
+        <script src="bootstrap/bootstrap.bundle.min.js"></script>
         <link href="StylText.css" rel="stylesheet" type="text/css"/>
         <link href="StyleContainer.css" rel="stylesheet" type="text/css"/>
     </head>
@@ -39,15 +40,19 @@
             </center>
             
         </form>
-            <%--Afficher le message d'erreur--%>
-            <%--
-                if(request.getAttribute("errorMessage")!= null{ %>
-                <script>
-                    alert('<%= request.getAtribute("errorMessage") %>');
-            </script>
+            
             <%
-            }
-            --%>
+                String error = (String) request.getAttribute("errorMessage");
+                if (error != null) {
+            %>
+            <div class="container mt-3">
+                <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                    <center>
+                        <%= error %>
+                    </center>
+                </div>
+            </div>
+            <% } %>
             <input type="submit" value="Afficher le mot de passe" onclick="togglePwd('mdpconfirm')">
         <a class="Autre" href="Autre_compte.jsp">Créer un compte</a>
         <br><br>

@@ -35,6 +35,7 @@ REFA MLANCE PROJET
 		-> mvn clean install
 	atao eo @ terminal misy ny cemin ny projet : 
 		-> copy mon-ear\target\mon-ear-1.0.ear C:\wildfly-35.0.1.Final\standalone\deployments
+		->Oui
 	sokafana ny fichier redeploy.bat ao anatin'ny projet : 
 		-> lancer redeploy.bat
 	Tapena eo @navigateur ty URL ty : 

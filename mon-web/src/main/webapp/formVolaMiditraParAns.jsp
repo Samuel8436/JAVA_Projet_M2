@@ -19,8 +19,8 @@
                 <th>Année</th>
                 <th>Montant</th>
                     
-                </tr>
-                <tbody id="myTable">
+            </tr>
+            <tbody id="myTable">
                 <%
                     rs1=st.executeQuery(Miditraisataona);
                     while (rs1.next()){

@@ -12,6 +12,7 @@
         <title>Inscription</title>
         <link href="bootstrap/._bootstrap.css" rel="stylesheet" type="text/css"/>
         <link href="bootstrap/bootstrap.min.css" rel="stylesheet" type="text/css"/>
+        <script src="bootstrap/bootstrap.bundle.min.js"></script>
         <link href="StylText.css" rel="stylesheet" type="text/css"/>
         <style>
             div.body {
@@ -26,11 +27,26 @@
                     box-shadow: 0 5px 10px 5px rgba(0,0,0,0.2);
                   }
         </style>
-    </head>
+    </head> 
     <body>
         <div class="body">
             <h1><center>CREER UNE AUTRE COMPT</center></h1>
             <a href="Login.jsp">Authentification</a>
+            <%
+                String error = (String) request.getAttribute("errorMessage");
+                String success = (String) request.getAttribute("successMessage");
+            %>
+            <% if (error != null) { %>
+                <div class="alert alert-danger alert-dismissible fade show m-3" role="alert">
+                    <%= error %>
+                    <!-- <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"><img src="image/fermer.png" alt="" width="10px" height="10px"></button> -->
+                </div>
+            <% } else if (success != null) { %>
+                <div class="alert alert-success alert-dismissible fade show m-3" role="alert">
+                    <%= success %>
+                    <!-- <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button> -->
+                </div>
+            <% } %>
             <form method="POST" action="Autr_compte">
                 <div class="col-sm-4">
                     <table  align='TOP' width='500px'>

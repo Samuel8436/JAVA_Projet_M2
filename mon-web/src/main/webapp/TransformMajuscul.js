@@ -18,4 +18,11 @@ function controlnom(str)
         }
 
         // Controle Prenom
-        
+        // const input = document.getElementById("prenom");
+    
+        // input.addEventListener("input", () => {
+        //   const mots = input.value.split(' ').map(mot => {
+        //     return mot ? mot[0].toUpperCase() + mot.slice(1).toLowerCase() : '';
+        //   });
+        //   input.value = mots.join(' ');
+        // });
