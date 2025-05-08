@@ -62,10 +62,11 @@
                     <img src="image/Add List_24px.png" title="Plus">
                 </a>
                   <div class="dropdown-menu">
-                      <!-- <a class="dropdown-item" href="SoldeMiditra&Mivok.jsp" title="Soldes">Soldes</a> -->
-                      <!-- <a class="dropdown-item" href="apropot de developeur.jsp" title="Rapports">Autre</a> -->
-                      <a class="dropdown-item" href="https://samuel8436.github.io/CURRICULUM-VITAE/" title="Ingenieur">Information de développeur</a>
-                      <a class="dropdown-item" href="Sedeconnecter.jsp" title="Déconnexion">Déconnexion</a>
+                    <a class="dropdown-item" href="Autre_compte.jsp" title="Nouveaux compte">Créer un compte</a>
+                    <!-- <a class="dropdown-item" href="SoldeMiditra&Mivok.jsp" title="Soldes">Soldes</a> -->
+                    <!-- <a class="dropdown-item" href="apropot de developeur.jsp" title="Rapports">Autre</a> -->
+                    <a class="dropdown-item" href="https://samuel8436.github.io/CURRICULUM-VITAE/" title="Ingenieur">Information de développeur</a>
+                    <a class="dropdown-item" href="Sedeconnecter.jsp" title="Déconnexion">Déconnexion</a>
                 </div>
       </li>
     </ul>

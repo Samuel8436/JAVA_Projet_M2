@@ -12,13 +12,10 @@
 <head>
     <meta charset="UTF-8">
     <title>Liste des entrées de caisse</title>
-    <link href="bootstrap/bootstrap.min.css" rel="stylesheet" type="text/css"/>
-    <link rel="stylesheet" href="bootstrap/dataTables.bootstrap.min.css">
-    <script src="bootstrap/jquery-3.6.0.min.js" type="text/javascript"></script>
-    <script src="bootstrap/jquery.dataTables.min.js"></script>
-    <script src="bootstrap/dataTable.bootstrap.min.js" type="text/javascript"></script>
-    <script src="bootstrap/dataTables.bootstrap.min.js"></script>
-    
+    <!-- Lien vers Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+     <!-- Lien vers Bootstrap JS (facultatif pour les composants interactifs) -->
+     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
     <link href="StylText.css" rel="stylesheet" type="text/css"/>
 </head>
 <body>
@@ -50,37 +47,32 @@
             <span class="list"><center><h2>Liste des entrées de caisse</h2></center></span>
         </div>
         <div class="container mt-5" id="overflowTest">
-        <table id="tbl-stdent" class="table table-striped table-bordered" style="width:100%">
-            <thead class="table-dark">
-                <tr>
-                    <th>Mois et Années</th>
-                    <th>Montant</th>
-                </tr>
-            </thead>
-            <tbody>
-                <%
-                    try{
-                        
-                        rs=st.executeQuery(Miditraisambolana);
-                        while (rs.next()){
-                %>
-                <tr>
-                    <td>
-                        <%=rs.getString("date") %>
-                    </td>
-                    <td>
-                        <%=rs.getString("totalmiditraparMoi") %>
-                    </td>
-                </tr>
-                <%
+            <table id="tbl-stdent" class="table table-striped table-bordered">
+                <thead class="table-dark">
+                    <tr>
+                        <th scope="col">Mois et Années</th>
+                        <th scope="col">Montant</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <%
+                        try {
+                            rs = st.executeQuery(Miditraisambolana);
+                            while (rs.next()) {
+                    %>
+                    <tr>
+                        <td><%= rs.getString("date") %></td>
+                        <td><%= rs.getString("totalmiditraparMoi") %></td>
+                    </tr>
+                    <%
+                            }
+                            con.close();
+                        } catch (Exception e) {
+                            out.println("Erreur : " + e.getMessage());
                         }
-                        con.close();
-                    } catch (Exception e) {
-                        out.println("Erreur : " + e.getMessage());
-                    }
-                %>
-            </tbody>
-        </table>
+                    %>
+                </tbody>
+            </table>
         </div>
     <script>
         $(document).ready(function () {

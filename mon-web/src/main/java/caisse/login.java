@@ -2,17 +2,24 @@ package caisse;
 
 import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
-// import jakarta.servlet.annotation.WebServlet;
+import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.*;
 
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.*;
-
+@WebServlet("/login")
 public class login extends HttpServlet {
 
     private static final long serialVersionUID = 1L;
+    @Override
+    protected void doGet(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        // Rediriger vers Login.jsp en cas d'accès direct à /login
+        response.sendRedirect("Login.jsp");
+    }
 
+    @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 

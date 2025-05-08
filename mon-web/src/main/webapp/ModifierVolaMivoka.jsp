@@ -1,5 +1,36 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@page import="java.sql.*" %>
+<%@include file="RequetteTatitra.jsp" %>
+<%
+    if(request.getParameter("submit")!=null)
+    {
+        String id=request.getParameter("id");
+        String daty=request.getParameter("date");
+        String nom=request.getParameter("nom");
+        String prenom=request.getParameter("prenom");
+        String montant=request.getParameter("montant");
+        String antony=request.getParameter("antony");
+       
+        pst=con.prepareStatement("UPDATE volamivoaka SET anarana = ?, fanampinanarana = ?, daty = ?, maribola = ?, antony = ? WHERE id=?");
+        pst.setString(1, nom);
+        pst.setString(2, prenom);
+        pst.setString(3, daty);
+        pst.setString(4,montant);
+        pst.setString(5,antony);
+        pst.setString(6, id); 
+        int result = pst.executeUpdate();
+        if (result > 0) {
+            request.setAttribute("successMessage", "Mise à jour succès !");
+            RequestDispatcher rd = request.getRequestDispatcher("formVolaMivoaka.jsp");
+            rd.forward(request, response);
+        }
+        else {
+            request.setAttribute("errorMessage", "Mise à jour echouer");
+            RequestDispatcher rd = request.getRequestDispatcher("formVolaMivoaka.jsp");
+            rd.forward(request, response);
+        }  
+    }   
+%>
 <!DOCTYPE html>
 <html>
     <head>
@@ -14,29 +45,11 @@
     <body>
         <%@include file="navBar.jsp" %>
         <%@include file="Securite_page.jsp" %>
-        <%@include file="RequetteTatitra.jsp" %>
-        <center>
-            <%
-                        String error = (String) request.getAttribute("errorMessage");
-                        String success = (String) request.getAttribute("successMessage");
-                    %>
-                    <% if (error != null) { %>
-                        <div class="alert alert-danger alert-dismissible fade show m-3" role="alert">
-                            <%= error %>
-                            <!-- <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"><img src="image/fermer.png" alt="" width="10px" height="10px"></button> -->
-                        </div>
-                    <% } else if (success != null) { %>
-                        <div class="alert alert-success alert-dismissible fade show m-3" role="alert">
-                            <%= success %>
-                            <!-- <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button> -->
-                        </div>
-                    <% } %>
-        </center>
-        <h1><u><center>Modifier Dépense</center></u></h1>
+        <h1><center>Modifier Dépense</center></h1>
         <div class="body">
             <div class="row">
                 <div class="col-sm-4">
-                    <form method="Post" action="ModifierVolaMivoaka">
+                    <form method="Post" action="#">
                         <%
                             String id=request.getParameter("id");
                             pst=con.prepareStatement("SELECT * FROM volamivoaka WHERE id=?");

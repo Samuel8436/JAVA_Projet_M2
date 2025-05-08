@@ -165,6 +165,7 @@
                 searching: false,      // ✅ Barre de recherche activée
                 paging: true,
                 lengthChange: true,
+                pageLength: 5, // ✅ Valeur par défaut à 5
                 ordering: true,
                 autoWidth: false,
                 language: {
@@ -183,7 +184,8 @@
                 },
                 columnDefs: [
                     { orderable: false, targets: [5, 6] } // Désactiver tri sur "Actions" et "Reçu"
-                ]
+                ],
+                order: [[0, 'desc']]  // Trier la première colonne (ID) par ordre décroissant
             });
         });
     </script>

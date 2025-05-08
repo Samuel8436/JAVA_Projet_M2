@@ -62,59 +62,56 @@
         </div>
     
     
-    <!--Liste-->
+        <!--Liste-->
         <div class="col-sm-8" id="overflowTest">
             <div class="form-group">
                 <!-- <input class="Recherche" id="myInput" type="text" placeholder="Recherche..">-->
                 <span class="list"><center><h2>Listes</h2></center></span>
             </div>
-            
-                    <table id="tbl-stdent" class="table table-striped table-bordered" cellspading="0" width="100%">
-                        <thead>
-                            <tr>
-                                <th>Id</th>
-                                <th>Nom</th>
-                                <th>Date</th>
-                                <th>Montant</th>
-                                <th>Montant</th>
-                            </tr>
-                        </thead>   
-                        <tbody id="myTable">
-                            <%
-                                try {
-                                    String Volamiditra = "SELECT * FROM `volamiditra` ORDER BY `id` DESC";
-                                    st = con.createStatement();
-                                    rs = st.executeQuery(Volamiditra);
-                                    while (rs.next()) {
-                                        String id = rs.getString("id");
-                            %>
-                            <tr>
-                                <td><%=rs.getString("id") %></td>
-                                <td><%=rs.getString("anarana") %> <%=rs.getString("fanampiny") %></td>
-                                <!--<td></td>-->
-                                <td><%=rs.getString("daty") %></td>
-                                <!--<td><%//=rs.getString("taona") %>/<%//=rs.getString("volana") %></td>-->
-                                <td><%=rs.getString("maribola") %></td>
-                                <td><%=rs.getString("antony") %></td>
-                                <td>
-                                    <a href="modifiervolaMiditr.jsp?id=<%=id %>"><img src="image/icons8-Edit-32.png" title='Modifier'></a>   
-                                    <a href="SuprimerVolaMiditr?id=<%=rs.getString("id") %>"><img src="image/icons8-Trash-32.png" onclick="return confirm('Voulez-vous vraiment suprimer');" title='Suprimer'></a>
-                                </td>
-                                <td>
-                                    <a href="RecuVolaMiditra.jsp?id=<%=id %>"><button title='Impression de reçu' class="btn btn-secondary"> Reçu</button></a>
-                                </td>
-                            </tr>
-                            <%
-                                    }
-                                    con.close();
-                                } catch (Exception e) {
-                                    out.println("Erreur : " + e.getMessage());
-                                }
-                            %>
-                        </tbody>
-                    </table>
-                </div>
-            </div>
+            <table id="tbl-stdent" class="table table-striped table-bordered" cellspading="0" width="100%">
+                <thead>
+                    <tr>
+                        <th>Id</th>
+                        <th>Nom</th>
+                        <th>Date</th>
+                        <th>Montant</th>
+                        <th>Montant</th>
+                    </tr>
+                </thead>   
+                <tbody id="myTable">
+                    <%
+                        try {
+                            String Volamiditra = "SELECT * FROM `volamiditra` ORDER BY `id` DESC";
+                            st = con.createStatement();
+                            rs = st.executeQuery(Volamiditra);
+                            while (rs.next()) {
+                                String id = rs.getString("id");
+                    %>
+                    <tr>
+                        <td><%=rs.getString("id") %></td>
+                        <td><%=rs.getString("anarana") %> <%=rs.getString("fanampiny") %></td>
+                        <!--<td></td>-->
+                        <td><%=rs.getString("daty") %></td>
+                        <!--<td><%//=rs.getString("taona") %>/<%//=rs.getString("volana") %></td>-->
+                        <td><%=rs.getString("maribola") %></td>
+                        <td><%=rs.getString("antony") %></td>
+                        <td>
+                            <a href="modifiervolaMiditr.jsp?id=<%=id %>"><img src="image/icons8-Edit-32.png" title='Modifier'></a>   
+                            <a href="SuprimerVolaMiditr?id=<%=rs.getString("id") %>"><img src="image/icons8-Trash-32.png" onclick="return confirm('Voulez-vous vraiment suprimer');" title='Suprimer'></a>
+                        </td>
+                        <td>
+                            <a href="RecuVolaMiditra.jsp?id=<%=id %>"><button title='Impression de reçu' class="btn btn-secondary"> Reçu</button></a>
+                        </td>
+                    </tr>
+                    <%
+                            }
+                            con.close();
+                        } catch (Exception e) {
+                            out.println("Erreur : " + e.getMessage());
+                        }
+                    %>
+                </tbody>
+            </table>
         </div>
     </div>
     
@@ -135,6 +132,7 @@
                 searching: false,      // ✅ Barre de recherche activée
                 paging: true,
                 lengthChange: true,
+                pageLength: 5, // ✅ Valeur par défaut à 5
                 ordering: true,
                 autoWidth: false,
                 language: {
@@ -153,7 +151,8 @@
                 },
                 columnDefs: [
                     { orderable: false, targets: [5, 6] } // Désactiver tri sur "Actions" et "Reçu"
-                ]
+                ],
+                order: [[0, 'desc']]  // Trier la première colonne (ID) par ordre décroissant
             });
         });
       </script>

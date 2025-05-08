@@ -6,6 +6,7 @@
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@page import="java.sql.*" %>
+<%@include file="RequetteTatitra.jsp" %>
 <!DOCTYPE html>
 <html>
     <head>
@@ -36,12 +37,6 @@
         <%@include file="Securite_page.jsp" %>
         <form method="POST" action="#">
             <%
-                Connection con;
-                PreparedStatement pst;
-                ResultSet rs;
-                Class.forName("com.mysql.jdbc.Driver");
-                con=DriverManager.getConnection("jdbc:mysql://localhost/gestiondecaisse","root",""); 
-
                 String id=request.getParameter("id");
                 pst=con.prepareStatement("SELECT * FROM volamiditra WHERE id=?");
                 pst.setString(1, id);
