@@ -24,7 +24,7 @@ jobs:
       uses: actions/cache@v4
       with:
         path: ~/.m2
-        key: ${{ runner.os }}-maven-${{ hashFiles('**/pom.xml') }}
+        key: ${{ runner.os }}-maven-${{ hashFiles('**/pom1.xml') }}
         restore-keys: |
           ${{ runner.os }}-maven-
 
