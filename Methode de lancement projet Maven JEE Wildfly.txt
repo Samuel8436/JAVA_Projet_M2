@@ -1,0 +1,105 @@
+java web 2.0/3.0
+CRUD EJB. et web archive sur jboss.org
+EJB karazana serveur en java
+WIFI ao @ biblio
+	TV EMIT
+	noegerald17
+Outille de develloppement : 
+	->vs code
+	->Xampp
+	->wildfly-35.0.1.Final
+____________________________________________________________________________
+Installena ny extension vs code 
+	->pack java
+mijery version ny maven : 
+	->mvn -v
+
+configuration de wildfly:
+	Atao any @ variable d'environnement ao @ "Path" ny:
+		->C:\wildfly-35.0.1.Final\bin
+		->C:\wildfly-35.0.1.Final
+
+LANCER LA SERVEUR wildfly
+Creation d'utilisateur sur wildfly
+	-> Lancena ny fichier "add-user.sh" ao @ "C:\wildfly-35.0.1.Final\bin"
+
+starter wildfly
+	Miditra any @ C:\wildfly-35.0.1.Final\bin de manokatra cmd de tapena eo :
+	-> standalone.bat
+	Raha mbola ts mandeha dia miditra cmd de tapena ty cmd ty Mode accès réseau (toutes les adresses IP) :
+	-> standalone.bat -b 0.0.0.0 -bmanagement 0.0.0.0
+ 
+
+REFA MLANCE PROJET
+	atao eo @ terminal misy ny cemin ny projet : 
+		-> mvn clean install
+	atao eo @ terminal misy ny cemin ny projet : 
+		-> copy mon-ear\target\mon-ear-1.0.ear C:\wildfly-35.0.1.Final\standalone\deployments
+		->Oui
+	sokafana ny fichier redeploy.bat ao anatin'ny projet : 
+		-> lancer redeploy.bat
+	Tapena eo @navigateur ty URL ty : 
+		-> http://localhost:8080/mon-web/Login.jsp
+_________________________________________________________________________________
+problem port xamp
+executer en tant qu'admin le cmd
+	netstat -ano | findstr :80
+->resultat
+	C:\Windows\system32>netstat -ano | findstr :80
+  TCP    0.0.0.0:80             0.0.0.0:0              LISTENING       8976
+  TCP    192.168.137.1:80       192.168.137.57:43878   FIN_WAIT_2      8976
+  TCP    [::]:80                [::]:0                 LISTENING       8976
+et aussi
+	netstat -ano | findstr :443
+->resultat
+	 TCP    0.0.0.0:443            0.0.0.0:0              LISTENING       8976
+  TCP    192.168.1.157:49233    157.240.214.1:443      ESTABLISHED     5296
+  TCP    192.168.1.157:49235    157.240.214.19:443     ESTABLISHED     5296
+  TCP    192.168.1.157:49237    157.240.214.1:443      ESTABLISHED     5296
+  TCP    192.168.1.157:49241    157.240.214.1:443      ESTABLISHED     5296
+  TCP    192.168.1.157:51373    172.172.255.218:443    ESTABLISHED     3616
+  TCP    192.168.1.157:54896    20.125.63.4:443        TIME_WAIT       0
+  TCP    192.168.1.157:55404    20.69.137.228:443      TIME_WAIT       0
+  TCP    192.168.1.157:55405    20.69.137.228:443      FIN_WAIT_1      1524
+  TCP    192.168.1.157:55425    20.42.65.84:443        TIME_WAIT       0
+  TCP    192.168.1.157:55435    20.190.190.131:443     ESTABLISHED     5788
+  TCP    192.168.1.157:55436    40.104.14.178:443      TIME_WAIT       0
+  TCP    192.168.1.157:55443    13.107.246.254:443     TIME_WAIT       0
+  TCP    192.168.1.157:55445    150.171.64.254:443     TIME_WAIT       0
+  TCP    192.168.1.157:55447    150.171.22.254:443     TIME_WAIT       0
+  TCP    192.168.1.157:55448    204.79.197.222:443     TIME_WAIT       0
+  TCP    192.168.1.157:55452    157.240.214.35:443     ESTABLISHED     5296
+  TCP    192.168.1.157:58439    20.230.46.154:443      TIME_WAIT       0
+  TCP    192.168.1.157:58454    52.123.129.14:443      TIME_WAIT       0
+  TCP    192.168.1.157:58456    157.240.214.56:443     ESTABLISHED     5296
+  TCP    192.168.1.157:58457    20.125.63.4:443        TIME_WAIT       0
+  TCP    192.168.1.157:58460    20.189.173.1:443       TIME_WAIT       0
+  TCP    192.168.1.157:58463    173.194.219.138:443    ESTABLISHED     5296
+  TCP    192.168.1.157:59830    3.219.4.193:443        ESTABLISHED     5296
+  TCP    192.168.1.157:59831    3.219.4.193:443        FIN_WAIT_1      5296
+  TCP    192.168.1.157:60664    20.42.73.31:443        TIME_WAIT       0
+  TCP    192.168.1.157:60674    13.74.129.92:443       TIME_WAIT       0
+  TCP    192.168.1.157:62217    74.125.21.99:443       ESTABLISHED     5296
+  TCP    192.168.1.157:64713    13.68.233.9:443        TIME_WAIT       0
+  TCP    192.168.1.157:64715    20.189.173.1:443       TIME_WAIT       0
+  TCP    192.168.1.157:64718    13.68.233.9:443        ESTABLISHED     1524
+  TCP    192.168.1.157:64720    104.18.32.47:443       ESTABLISHED     5296
+  TCP    [::]:443               [::]:0
+--------------------
+raha ireo no misy de ity no solution
+atao fin de tache io mapiasa ny port io
+	C:\Windows\system32>tasklist | findstr 8976
+httpd.exe                     8976 Console                    1    16 808 Ko
+
+C:\Windows\system32>taskkill /PID 8976 /F
+Opération réussie : le processus avec PID 8976 a été terminé.
+___________________________________________
+		Erreur
+Failed to install metadata com.exemple:mon-web/maven-metadata.xml: 
+Could not parse metadata C:\Users\Nomeniony\.m2\repository\com\exemple\mon-web\maven-metadata-local.xml: only whitespace content allowed before start tag and not \u0 (position: START_DOCUMENT seen \u0... @1:2)  -> [Help 1]
+		Solution
+Midira ao @ chemin misy ny projet nao de tapeo @ cmd ty comande ty : 
+	->mvn dependency:purge-local-repository -DmanualInclude="com.exemple:mon-ejb" -DreResolve=false
+	->mvn clean install -U
+
+__________________________________________________________________________________

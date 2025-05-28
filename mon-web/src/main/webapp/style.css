@@ -1,0 +1,25 @@
+#overflowTest {
+    color: white;
+    padding: 15px;
+    width: 50%;
+    height: 500px;
+    overflow: scroll;
+    border: 1px solid #ccc;
+  }
+  @media print{
+      body *{
+          visibility: hidden;
+      }
+      .print-container, .print-container *{
+          visibility: visible;
+      }
+      .print-container{
+          position: absolute;
+          left: 0;
+          top: 0;
+      }
+  }
+  input.Recherche{
+      float: right;
+      padding-top: 10px;
+  }

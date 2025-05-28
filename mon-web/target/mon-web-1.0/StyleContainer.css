@@ -1,0 +1,24 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : 7 mars 2024, 04:50:17
+    Author     : NOMENIONY
+*/
+div.body {
+    background :#ccccff; 
+    width:60%;
+    margin:30px auto;
+    border-radius:0.4em;
+    border:1px solid #191919;
+    overflow:hidden;
+    position:relative;
+    box-shadow: 0 5px 10px 5px rgba(0,0,0,0.2);
+}
+a.Autre{
+    float: right;
+}
+
+
