@@ -88,9 +88,7 @@
                     <tr>
                         <td><%=rs.getString("id") %></td>
                         <td><%=rs.getString("anarana") %> <%=rs.getString("fanampiny") %></td>
-                        <!--<td></td>-->
                         <td><%=rs.getString("daty") %></td>
-                        <!--<td><%//=rs.getString("taona") %>/<%//=rs.getString("volana") %></td>-->
                         <td><%=rs.getString("maribola") %></td>
                         <td><%=rs.getString("antony") %></td>
                         <td>

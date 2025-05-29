@@ -31,7 +31,7 @@ starter wildfly
  
 
 REFA MLANCE PROJET
-	atao eo @ terminal misy ny cemin ny projet : 
+	atao eo @ terminal misy ny semin ny projet : 
 		-> mvn clean install
 	atao eo @ terminal misy ny cemin ny projet : 
 		-> copy mon-ear\target\mon-ear-1.0.ear C:\wildfly-35.0.1.Final\standalone\deployments

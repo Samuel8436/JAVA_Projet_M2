@@ -14,12 +14,8 @@
         <script src="bootstrap/jquery.min.js"></script>
         <script src="bootstrap/popper.min.js"></script>
         <script src="bootstrap/bootstrap.min.js"></script>
-        
-        
         <link rel="stylesheet" href="bootstrap/dataTables.bootstrap.min.css">
-        <!-- <script src="bootstrap/jquery-3.6.0.min.js" type="text/javascript"></script> -->
         <script src="bootstrap/jquery.dataTables.min.js"></script>
-        <script src="bootstrap/dataTable.bootstrap.min.js" type="text/javascript"></script>
         <script src="bootstrap/dataTables.bootstrap.min.js"></script>
     </head>
     <body>
