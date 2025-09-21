@@ -1,0 +1,19 @@
+fin : fixir la page et la numerotation de page juste en bas du tableau et l'fficher juste en haut du tableaus dans la test.jsp
+fin 14/06/2025 : atao page manokana ny script mise en page de tableau de asiana koa ao @ vola miditra & mivoaka par mois & par ans
+
+
+fin : efa manomboka mandeha ny multy thride @ vola mivoaka
+fin 18/09/2025 : modifier vola mivoaka raha lehibe nohon vola ao @ compte ny vola eo @ champ vola avoaka dia tokn ho erreur
+fin 18/09/2025 : nanova ny BD hahazaka caractères accentués (É, ô, à, etc.) ny table vola mivoaka sy miditra
+fin 21/09/2025 : Atao multy thrude (multy utilisateur). Izany hoe samy manana ny compteny isaky ny fiangonana
+corriger l'affichage de carracterre spassiaux (erreur de caracter speciux)
+
+mettez en responsive tout les pages
+mettez la connexion a la bd dan un fichier
+	
+
+hatsaraina ny code regroupena @ fichier irey.java ny connexion sy ny action rehetra
+atao responsive aby ny styl css rehetra indrindra ny eo  @ authentification
+Ny "É" @ny nom tsi zakany fa manao erreor
+
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        

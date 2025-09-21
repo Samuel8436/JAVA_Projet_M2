@@ -1,0 +1,43 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : 1 mars 2023, 22:20:20
+    Author     : NOMENY
+*/
+
+h1 {
+    text-shadow: 3px 3px  #668cff;
+    }
+
+ h2 {
+    text-shadow: 2px 2px  #668cff;
+    animation: mymove 10s infinite;
+    }
+    @keyframes mymove{
+        0%{opacity: 0%;}
+        
+        100%{opacity: 100%;}
+       }
+div.DIV {
+        position: relative;
+        animation-name: example;
+        animation-duration: 10s;
+        animation-iteration-count: infinite;
+        }
+        @keyframes example {
+        0%   {left:0px; top:0px;}
+        50%  {left:200px; top:0px;}
+        100% {left:0px; top:0px;}
+        }
+#btn{
+    border: #000 7px;
+    border-radius: 8px;
+    width: 150px;
+    height: 40px; 
+    }
+#btn:hover {
+    background-color: #555555;
+    }
